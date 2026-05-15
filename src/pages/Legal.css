@@ -1,0 +1,60 @@
+.legal-page-container {
+    padding: 150px 40px 100px;
+    max-width: 1000px;
+    margin: 0 auto;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.legal-title {
+    font-size: 45px;
+    font-weight: 900;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+}
+
+.legal-subtitle {
+    color: #666;
+    margin-bottom: 50px;
+    font-size: 15px;
+}
+
+.legal-section {
+    margin-bottom: 45px;
+}
+
+.legal-section-title {
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: #007bff;
+}
+
+.legal-text {
+    line-height: 1.8;
+    color: #333;
+    font-size: 16px;
+}
+
+.legal-list {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-top: 10px;
+    line-height: 1.8;
+    color: #333;
+    font-size: 16px;
+}
+
+@media (max-width: 768px) {
+    .legal-page-container {
+        padding: 100px 20px 60px;
+    }
+    .legal-title {
+        font-size: 32px;
+    }
+    .legal-section-title {
+        font-size: 18px;
+    }
+    .legal-text, .legal-list {
+        font-size: 14px;
+    }
+}

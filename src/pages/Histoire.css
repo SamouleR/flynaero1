@@ -1,0 +1,226 @@
+.histoire-page {
+    padding: 140px 40px 100px;
+    min-height: 100vh;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: #000;
+    overflow: hidden; /* Prevent horizontal scroll on the page itself */
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.histoire-title {
+    font-size: 60px;
+    font-weight: 900;
+    letter-spacing: -2px;
+    margin-bottom: 80px;
+}
+
+.carousel-wrapper {
+    width: 100%;
+    overflow: hidden; /* Hide the cards that are outside */
+    margin-bottom: 80px;
+    padding-bottom: 20px;
+}
+
+.carousel-container {
+    display: flex;
+    gap: 40px;
+    transition: transform 0.1s ease-out; /* Fast transition to follow the slider smoothly */
+    will-change: transform;
+}
+
+.history-card {
+    min-width: 380px;
+    width: 380px;
+    flex-shrink: 0;
+}
+
+.card-img-container {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin-bottom: 0;
+    transition: transform 0.5s ease;
+}
+
+.card-hover-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, rgba(26,58,90,0.95) 100%);
+    color: #ffffff;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.6); /* Drop shadow to ensure readability on both light and dark areas */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.6;
+    opacity: 0;
+    transform: translateY(100%); /* Slides in from bottom to top */
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.card-img-container:hover .card-img {
+    transform: scale(1.05);
+}
+
+.card-img-container:hover .card-hover-text {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-weight: 900;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.card-title-text {
+    font-size: 16px;
+    letter-spacing: 0.5px;
+}
+
+.card-date {
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.card-summary {
+    color: #007bff;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Timeline section */
+.timeline-section {
+    position: relative;
+    padding: 0 20px; /* Leave room for thumb */
+}
+
+.waves-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+}
+
+.wave-bar {
+    width: 4px;
+    background-color: #007bff;
+    border-radius: 4px;
+    transition: height 0.3s;
+}
+
+.slider-input {
+    position: absolute;
+    top: 0;
+    left: 20px;
+    width: calc(100% - 40px);
+    height: 60px;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.slider-thumb {
+    position: absolute;
+    top: 30px;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 40px;
+    background: #f4f7f9;
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none; /* Crucial: lets the input range handle clicks */
+    z-index: 5;
+    /* To visually sync the thumb position accurately since input range maps 0 to 100% of its track */
+    /* the left style is applied inline in JS */
+}
+
+/* Fix thumb visual overflow mapping */
+.timeline-section {
+    /* To make 0% and 100% map perfectly with the thumb size */
+    margin: 0 30px;
+}
+
+.slider-input {
+    left: 0;
+    width: 100%;
+}
+
+.timeline-labels-months {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    font-weight: 700;
+    margin-top: 20px;
+    color: #666;
+}
+
+.timeline-labels-years {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 800;
+    margin-top: 30px;
+    color: #333;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .histoire-page {
+        padding: 100px 20px 60px;
+    }
+    .histoire-title {
+        font-size: 40px;
+        margin-bottom: 40px;
+    }
+    .carousel-wrapper {
+        margin-bottom: 40px;
+    }
+    .history-card {
+        min-width: 240px;
+        width: 240px;
+    }
+    .card-img {
+        height: 300px;
+    }
+    .slider-thumb {
+        width: 50px;
+        height: 34px;
+        top: 30px;
+    }
+    .slider-thumb svg {
+        width: 18px;
+        height: 18px;
+    }
+    .timeline-labels-years {
+        font-size: 10px;
+        margin-top: 20px;
+    }
+    .timeline-labels-months {
+        font-size: 9px;
+    }
+}
