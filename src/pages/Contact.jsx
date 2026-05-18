@@ -1,7 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Contact.css';
 
 const Contact = () => {
+    const [formData, setFormData] = useState({
+        name: '',
+        company: '',
+        email: '',
+        subject: '',
+        message: ''
+    });
+    const [status, setStatus] = useState({ type: '', message: '' });
+    const [loading, setLoading] = useState(false);
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        setStatus({ type: '', message: '' });
+
+        try {
+            const response = await fetch('http://localhost:5000/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+
+            if (response.ok) {
+                setStatus({ type: 'success', message: 'Message envoyé ! Vous allez recevoir un mail de confirmation.' });
+                setFormData({ name: '', company: '', email: '', subject: '', message: '' });
+            } else {
+                setStatus({ type: 'error', message: "Une erreur est survenue lors de l'envoi." });
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            setStatus({ type: 'error', message: 'Impossible de contacter le serveur.' });
+        } finally {
+            setLoading(false);
+        }
+    };
     return (
         <main className="contact-container">
             <section>
@@ -58,30 +97,48 @@ const Contact = () => {
             </section>
 
             <section>
-                <form className="form-layout" onSubmit={e => e.preventDefault()}>
+                <form className="form-layout" onSubmit={handleSubmit}>
                     <div className="form-field">
                         <label>Nom</label>
-                        <input type="text" placeholder="Votre nom complet" />
+                        <input name="name" type="text" placeholder="Votre nom complet" value={formData.name} onChange={handleChange} required />
                     </div>
                     <div className="form-field">
                         <label>Société</label>
-                        <input type="text" placeholder="Nom de votre entreprise" />
+                        <input name="company" type="text" placeholder="Nom de votre entreprise" value={formData.company} onChange={handleChange} required />
                     </div>
                     <div className="form-field full-row">
                         <label>Email Professionnel</label>
-                        <input type="email" placeholder="exemple@gmail.com" />
+                        <input name="email" type="email" placeholder="exemple@gmail.com" value={formData.email} onChange={handleChange} required />
                     </div>
                     <div className="form-field full-row">
                         <label>Objet</label>
-                        <input type="text" placeholder="Sujet de votre demande" />
+                        <input name="subject" type="text" placeholder="Sujet de votre demande" value={formData.subject} onChange={handleChange} required />
                     </div>
                     <div className="form-field full-row">
                         <label>Message (Max 2000 caractères)</label>
-                        <textarea rows="5"
-                            placeholder="Décrivez votre projet aéronautique ou votre question technique"></textarea>
+                        <textarea name="message" rows="5"
+                            placeholder="Décrivez votre projet aéronautique ou votre question technique"
+                            value={formData.message} onChange={handleChange} required></textarea>
                     </div>
 
-                    <button type="submit" className="btn-send">Envoyer le message</button>
+                    {status.message && (
+                        <div className={`status-msg ${status.type}`} style={{
+                            padding: '12px',
+                            borderRadius: '8px',
+                            marginBottom: '20px',
+                            fontSize: '14px',
+                            fontWeight: '600',
+                            backgroundColor: status.type === 'success' ? '#dcfce7' : '#fee2e2',
+                            color: status.type === 'success' ? '#166534' : '#991b1b',
+                            width: '100%'
+                        }}>
+                            {status.message}
+                        </div>
+                    )}
+
+                    <button type="submit" className="btn-send" disabled={loading}>
+                        {loading ? 'Envoi en cours...' : 'Envoyer le message'}
+                    </button>
 
                     <div className="ia-cta">
                         <div className="ia-text">

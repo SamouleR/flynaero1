@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Actualites.css';
 
@@ -159,12 +159,20 @@ const types = ['Prix & Distinctions', 'News Entreprise', 'Technologies'];
 const years = ['2024', '2025', '2026'];
 
 const Actualites = () => {
+    const [articles, setArticles] = useState([]);
     const [activeType, setActiveType] = useState(null);
     const [activeYear, setActiveYear] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
 
+    useEffect(() => {
+        fetch('http://localhost:5000/api/articles')
+            .then(res => res.json())
+            .then(data => setArticles(data))
+            .catch(err => console.error('Error fetching articles:', err));
+    }, []);
+
     const filteredArticles = useMemo(() => {
-        return articlesData.filter((article) => {
+        return articles.filter((article) => {
             const matchesType = activeType ? article.type === activeType : true;
             const matchesYear = activeYear ? article.year === activeYear : true;
             const matchesSearch = searchQuery

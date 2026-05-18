@@ -34,7 +34,7 @@ const Navbar = () => {
                 <li className="nav-item">
                     <a href="#">Nos Technologies</a>
                     <ul className="dropdown-menu">
-                        <li><a href="#">La méthode DPSM</a></li>
+                        <li><Link to="/dpsm">La méthode DPSM</Link></li>
                         <li><a href="#">Notre logiciel</a></li>
                     </ul>
                 </li>
@@ -42,7 +42,7 @@ const Navbar = () => {
                 <li className="nav-item">
                     <Link to="/contact">Contact</Link>
                     <ul className="dropdown-menu">
-                        <li><a href="#">Partenariats</a></li>
+                        <li><Link to="/partenaires">Partenariats</Link></li>
                         <li><a href="#">Recrutement</a></li>
                         <li><Link to="/contact">Mon projet avec Flynaero</Link></li>
                     </ul>

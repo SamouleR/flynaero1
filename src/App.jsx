@@ -10,7 +10,17 @@ import PolitiqueConfidentialite from './pages/PolitiqueConfidentialite'
 import Cgv from './pages/Cgv'
 import Actualites from './pages/Actualites'
 import ActualiteDetail from './pages/ActualiteDetail'
+import AdminActualites from './pages/AdminActualites'
+import Login from './pages/Login'
+import Partenaires from './pages/Partenaires'
+import Dpsm from './pages/Dpsm'
 import Footer from './components/Footer'
+import { Navigate } from 'react-router-dom'
+
+const ProtectedRoute = ({ children }) => {
+  const isAdmin = localStorage.getItem('isFlynaeroAdmin') === 'true';
+  return isAdmin ? children : <Navigate to="/login" />;
+};
 
 function App() {
   return (
@@ -27,6 +37,17 @@ function App() {
           <Route path="/cgv" element={<Cgv />} />
           <Route path="/actualites" element={<Actualites />} />
           <Route path="/actualites/:id" element={<ActualiteDetail />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/partenaires" element={<Partenaires />} />
+          <Route path="/dpsm" element={<Dpsm />} />
+          <Route 
+            path="/admin/actualites" 
+            element={
+              <ProtectedRoute>
+                <AdminActualites />
+              </ProtectedRoute>
+            } 
+          />
         </Routes>
         <Footer />
       </div>

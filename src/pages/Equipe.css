@@ -59,7 +59,7 @@
 .navbar-equipe .nav-item>a {
     text-decoration: none;
     color: var(--text-black);
-    font-weight: 800;
+    font-weight: 500;
     font-size: 17px;
     display: flex;
     align-items: center;

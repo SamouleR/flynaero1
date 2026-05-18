@@ -124,39 +124,57 @@
 }
 
 .wave-bar {
-    width: 4px;
-    background-color: #007bff;
-    border-radius: 4px;
-    transition: height 0.3s;
+    width: 3px;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 3px;
+    transition: height 0.3s, background-color 0.2s;
+}
+
+.wave-bar.active {
+    background-color: #0A84FF;
 }
 
 .slider-input {
     position: absolute;
     top: 0;
-    left: 20px;
-    width: calc(100% - 40px);
+    left: 0;
+    width: 100%;
     height: 60px;
     opacity: 0;
     cursor: pointer;
     z-index: 10;
 }
 
-.slider-thumb {
+.slider-thumb-wrapper {
     position: absolute;
     top: 30px;
-    transform: translate(-50%, -50%);
-    width: 60px;
-    height: 40px;
-    background: #f4f7f9;
-    border: 2px solid #007bff;
-    border-radius: 8px;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
+    z-index: 5;
+    transition: left 0.1s ease-out;
+}
+
+.slider-thumb-pill {
+    width: 80px;
+    height: 36px;
+    background: #0A84FF; /* Blue instead of red */
+    border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    pointer-events: none; /* Crucial: lets the input range handle clicks */
-    z-index: 5;
-    /* To visually sync the thumb position accurately since input range maps 0 to 100% of its track */
-    /* the left style is applied inline in JS */
+    gap: 8px;
+    box-shadow: 0 4px 10px rgba(10, 132, 255, 0.3);
+}
+
+.vertical-indicator-line {
+    width: 3px;
+    height: 40px;
+    background: #0A84FF;
+    margin-top: 10px;
+    border-radius: 2px;
 }
 
 /* Fix thumb visual overflow mapping */
@@ -207,14 +225,19 @@
     .card-img {
         height: 300px;
     }
-    .slider-thumb {
-        width: 50px;
-        height: 34px;
+    .slider-thumb-wrapper {
         top: 30px;
     }
-    .slider-thumb svg {
-        width: 18px;
-        height: 18px;
+    .slider-thumb-pill {
+        width: 60px;
+        height: 30px;
+    }
+    .slider-thumb-pill svg {
+        width: 16px;
+        height: 16px;
+    }
+    .vertical-indicator-line {
+        height: 30px;
     }
     .timeline-labels-years {
         font-size: 10px;

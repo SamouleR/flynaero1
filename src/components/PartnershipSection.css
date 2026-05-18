@@ -1,0 +1,179 @@
+.partnership-section {
+    background-color: #ffffff; /* Fond blanc */
+    padding: 100px 40px;
+    width: 100%;
+    color: #0f172a; /* Texte bleu foncé/noir pour la lisibilité sur fond blanc */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+.partnership-container {
+    max-width: 1100px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+}
+
+.partnership-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
+
+.top-row {
+    align-items: flex-start;
+}
+
+.bottom-row {
+    align-items: flex-end;
+}
+
+/* ENS Block */
+.ens-block {
+    display: flex;
+    gap: 25px;
+    align-items: flex-end;
+    width: 50%;
+}
+
+.building-img {
+    width: 260px;
+    height: 180px;
+    object-fit: cover;
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.ens-logo-css {
+    display: flex;
+    flex-direction: column;
+    color: #00b4a4; /* Teal color for the text and lines */
+    font-weight: 700;
+    font-size: 1.3rem;
+    letter-spacing: -0.5px;
+    padding-bottom: 5px;
+}
+
+.ens-line {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    line-height: 1.1;
+}
+
+.line-bar {
+    height: 3px;
+    background-color: #00b4a4;
+    display: inline-block;
+    margin-left: 8px;
+    border-radius: 2px;
+}
+
+.line-1 .line-bar { width: 140px; }
+.line-2 .line-bar { width: 110px; }
+.line-3 .line-bar { width: 70px; }
+
+/* Title Block */
+.title-block {
+    width: 50%;
+    text-align: right;
+    padding-top: 20px;
+}
+
+.title-block h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.25;
+}
+
+/* Text Block */
+.text-block {
+    width: 50%;
+}
+
+.text-block p {
+    font-size: 1.1rem;
+    line-height: 1.4;
+    margin: 0;
+    font-weight: 400;
+    max-width: 480px;
+}
+
+/* CNRS Block */
+.cnrs-block {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.cnrs-logo-css {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 40%, #5ab6d6, #013f6e);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 3.2rem;
+    font-weight: 300;
+    letter-spacing: -2px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    position: relative;
+    z-index: 2;
+    margin-right: -40px; /* Pull right to overlap the image */
+}
+
+.campus-img {
+    width: 320px;
+    height: 210px;
+    object-fit: cover;
+    z-index: 1;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+}
+
+@media (max-width: 900px) {
+    .partnership-row {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+    }
+    
+    .top-row {
+        flex-direction: column-reverse; /* Title on top for mobile */
+    }
+
+    .ens-block, .title-block, .text-block, .cnrs-block {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .title-block {
+        text-align: center;
+        padding-top: 0;
+    }
+
+    .ens-block {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .text-block p {
+        margin: 0 auto;
+    }
+
+    .cnrs-block {
+        flex-direction: column;
+    }
+
+    .cnrs-logo-css {
+        margin-right: 0;
+        margin-bottom: -30px; /* Overlap vertically */
+    }
+}

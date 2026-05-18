@@ -1,0 +1,60 @@
+.dpsm-page {
+    width: 100%;
+    min-height: 100vh;
+    background-color: transparent; /* Laisse apparaître le dégradé global */
+    padding-top: 150px; /* Compense la navbar */
+    padding-bottom: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.dpsm-container {
+    max-width: 900px;
+    width: 100%;
+    padding: 0 40px;
+}
+
+.dpsm-title {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #0c192c; /* Bleu foncé thématique */
+    margin-bottom: 40px;
+    letter-spacing: -1px;
+}
+
+.dpsm-intro {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    color: #1e293b;
+    margin-bottom: 30px;
+    font-weight: 500;
+}
+
+.dpsm-list-plain {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dpsm-list-plain li {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: #1e293b;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .dpsm-page {
+        padding-top: 120px;
+    }
+    
+    .dpsm-title {
+        font-size: 2.2rem;
+    }
+    
+    .dpsm-container {
+        padding: 0 20px;
+    }
+}

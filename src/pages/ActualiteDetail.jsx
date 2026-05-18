@@ -1,11 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { articlesData } from './Actualites';
 import './ActualiteDetail.css';
 
 const ActualiteDetail = () => {
     const { id } = useParams();
-    const article = articlesData.find((a) => a.id === parseInt(id));
+    const [article, setArticle] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        setLoading(true);
+        fetch('http://localhost:5000/api/articles')
+            .then(res => res.json())
+            .then(data => {
+                const found = data.find((a) => a.id === parseInt(id));
+                setArticle(found);
+                setLoading(false);
+            })
+            .catch(err => {
+                console.error('Error fetching article:', err);
+                setLoading(false);
+            });
+    }, [id]);
 
     // --- Comment system with localStorage persistence ---
     const storageKey = `flynaero_comments_${id}`;
@@ -61,6 +76,14 @@ const ActualiteDetail = () => {
             .toUpperCase()
             .slice(0, 2);
     };
+
+    if (loading) {
+        return (
+            <div className="article-detail-page">
+                <div style={{ padding: '100px 0', textAlign: 'center' }}>Chargement...</div>
+            </div>
+        );
+    }
 
     if (!article) {
         return (

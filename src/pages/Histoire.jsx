@@ -42,12 +42,15 @@ const Histoire = () => {
     // Helper to generate the wave bars
     const renderWaves = () => {
         const waves = [];
-        // Generate 60 bars for the visual effect
         for (let i = 0; i < 60; i++) {
-            // Randomish height between 20px and 60px, but deterministic for stable render
             const height = 20 + Math.abs(Math.sin(i * 0.5) * 30) + Math.abs(Math.cos(i * 0.2) * 10);
+            const isActive = (i / 59) * 100 <= progress;
             waves.push(
-                <div key={i} className="wave-bar" style={{ height: `${height}px` }}></div>
+                <div 
+                    key={i} 
+                    className={`wave-bar ${isActive ? 'active' : ''}`} 
+                    style={{ height: `${height}px` }}
+                ></div>
             );
         }
         return waves;
@@ -104,11 +107,17 @@ const Histoire = () => {
                     className="slider-input"
                 />
 
-                {/* The custom thumb (Airplane) */}
-                <div className="slider-thumb" style={{ left: `${progress}%` }}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#007bff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.2-1.1.7l-1.2 3.6c-.2.5.1 1 .5 1.1L10 13l-4 4-3-1c-.5-.2-1 .2-1.2.6L1 18l5.5 1.5L8 25l1.4-.8c.4-.2.8-.7.6-1.2l-1-3 4-4 1.4 7c.1.4.6.7 1.1.5l3.6-1.2c.5-.2.8-.6.7-1.1z"/>
-                    </svg>
+                {/* The custom thumb (Red Pill with Arrows and Line) */}
+                <div className="slider-thumb-wrapper" style={{ left: `${progress}%` }}>
+                    <div className="slider-thumb-pill">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M19 12H5M5 12l7-7M5 12l7 7"/>
+                        </svg>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M5 12h14M19 12l-7-7M19 12l-7 7"/>
+                        </svg>
+                    </div>
+                    <div className="vertical-indicator-line"></div>
                 </div>
 
                 {/* Labels below the timeline */}
